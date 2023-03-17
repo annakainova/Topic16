@@ -1,26 +1,18 @@
 package ru.netology.games;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
 
-    protected ArrayList<Player> players = new ArrayList<>();
+    protected HashMap<String, Player> players = new HashMap<>();
 
     public void register(Player player) {
-        players.add(player);
+        players.put(player.getName(), player);
     }
 
     public Player findByName(String name) {
-        Player player = null;
-
-        for (Player p : players) {
-            if (p.getName() == name) {
-                player = p;
-                break;
-            }
-        }
-
-        return player;
+        return players.get(name);
     }
 
     public int round(String playerName1, String playerName2) {
@@ -28,9 +20,9 @@ public class Game {
         Player player1 = findByName(playerName1);
         Player player2 = findByName(playerName2);
 
-        if (!players.contains(player1)) {
+        if (player1 == null) {
             throw new NotRegisteredException("Player with name: " + playerName1 + " not registered");
-        } else if (!players.contains(player2)) {
+        } else if (player2 == null) {
             throw new NotRegisteredException("Player with name: " + playerName2 + " not registered");
         }
 
