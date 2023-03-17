@@ -28,9 +28,9 @@ public class Game {
         Player player1 = findByName(playerName1);
         Player player2 = findByName(playerName2);
 
-        if (!players.contains(player1)) {
+        if (player1 == null) {
             throw new NotRegisteredException("Player with name: " + playerName1 + " not registered");
-        } else if (!players.contains(player2)) {
+        } else if (player2 == null) {
             throw new NotRegisteredException("Player with name: " + playerName2 + " not registered");
         }
 
